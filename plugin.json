@@ -1,0 +1,38 @@
+{
+  "name": "视频数据分析插件",
+  "description": "获取短视频平台的详细数据，包括点赞数、播放数、评论数等统计信息",
+  "version": "1.0.0",
+  "author": "极光联合",
+  "main": "main.py",
+  "type": "api",
+  "parameters": [
+    {
+      "name": "api_key",
+      "type": "string",
+      "description": "短视频平台开放API的密钥",
+      "required": true
+    },
+    {
+      "name": "client_secret",
+      "type": "string", 
+      "description": "短视频平台开放API的客户端密钥",
+      "required": true
+    },
+    {
+      "name": "open_id",
+      "type": "string",
+      "description": "用户的唯一标识符",
+      "required": true
+    },
+    {
+      "name": "video_ids",
+      "type": "array",
+      "description": "要查询的视频ID列表",
+      "required": true
+    }
+  ],
+  "output": {
+    "type": "object",
+    "description": "返回视频数据统计信息"
+  }
+}
