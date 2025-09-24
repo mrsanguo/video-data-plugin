@@ -15,10 +15,11 @@
         
         body {
             font-family: 'Orbitron', monospace;
-            background: #000;
-            color: #00ff41;
+            background: linear-gradient(135deg, #0a0a23 0%, #1a1a3a 50%, #2d1b69 100%);
+            color: #e0c3fc;
             overflow-x: hidden;
             position: relative;
+            min-height: 100vh;
         }
         
         /* 代码雨背景 */
@@ -37,9 +38,10 @@
             top: -100%;
             font-family: 'Courier New', monospace;
             font-size: 14px;
-            color: #00ff41;
+            color: #9bb5ff;
             animation: matrix-fall linear infinite;
-            text-shadow: 0 0 5px #00ff41;
+            text-shadow: 0 0 5px #9bb5ff;
+            opacity: 0.6;
         }
         
         @keyframes matrix-fall {
@@ -73,15 +75,15 @@
             width: 120px;
             height: 120px;
             margin: 0 auto;
-            background: linear-gradient(45deg, #00ff41, #0080ff);
+            background: linear-gradient(45deg, #8b5cf6, #06b6d4, #3b82f6);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 48px;
             font-weight: 900;
-            color: #000;
-            box-shadow: 0 0 30px #00ff41, 0 0 60px #00ff41, 0 0 90px #00ff41;
+            color: #fff;
+            box-shadow: 0 0 30px #8b5cf6, 0 0 60px #06b6d4, 0 0 90px #3b82f6;
             animation: pulse 2s ease-in-out infinite alternate;
             position: relative;
         }
@@ -93,17 +95,17 @@
             left: -10px;
             right: -10px;
             bottom: -10px;
-            border: 2px solid #00ff41;
+            border: 2px solid #8b5cf6;
             border-radius: 50%;
             animation: rotate 4s linear infinite;
         }
         
         @keyframes pulse {
             from {
-                box-shadow: 0 0 30px #00ff41, 0 0 60px #00ff41, 0 0 90px #00ff41;
+                box-shadow: 0 0 30px #8b5cf6, 0 0 60px #06b6d4, 0 0 90px #3b82f6;
             }
             to {
-                box-shadow: 0 0 40px #00ff41, 0 0 80px #00ff41, 0 0 120px #00ff41;
+                box-shadow: 0 0 40px #8b5cf6, 0 0 80px #06b6d4, 0 0 120px #3b82f6;
             }
         }
         
@@ -120,24 +122,29 @@
             font-size: 3.5rem;
             font-weight: 900;
             margin-bottom: 20px;
-            text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41, 0 0 30px #00ff41;
+            background: linear-gradient(45deg, #8b5cf6, #06b6d4, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
             animation: glow 2s ease-in-out infinite alternate;
             letter-spacing: 3px;
         }
         
         .header p {
             font-size: 1.3rem;
-            opacity: 0.8;
-            text-shadow: 0 0 5px #00ff41;
+            opacity: 0.9;
+            color: #c4b5fd;
+            text-shadow: 0 0 5px rgba(196, 181, 253, 0.5);
             animation: fadeInUp 1s ease-out;
         }
         
         @keyframes glow {
             from {
-                text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41, 0 0 30px #00ff41;
+                filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.5));
             }
             to {
-                text-shadow: 0 0 15px #00ff41, 0 0 25px #00ff41, 0 0 35px #00ff41;
+                filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.8));
             }
         }
         
@@ -147,19 +154,19 @@
                 transform: translateY(30px);
             }
             to {
-                opacity: 0.8;
+                opacity: 0.9;
                 transform: translateY(0);
             }
         }
         
         /* 内容区域 */
         .content {
-            background: rgba(0, 0, 0, 0.8);
-            border: 2px solid #00ff41;
+            background: rgba(15, 15, 45, 0.8);
+            border: 2px solid #8b5cf6;
             border-radius: 15px;
             padding: 40px;
             margin: 40px 0;
-            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
             backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
@@ -172,7 +179,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
             animation: scan 3s linear infinite;
         }
         
@@ -186,11 +193,11 @@
         }
         
         .content h2 {
-            color: #00ff41;
+            color: #8b5cf6;
             font-size: 2rem;
             margin-bottom: 20px;
-            text-shadow: 0 0 10px #00ff41;
-            border-bottom: 2px solid #00ff41;
+            text-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+            border-bottom: 2px solid #8b5cf6;
             padding-bottom: 10px;
         }
         
@@ -203,8 +210,8 @@
         }
         
         .feature-card {
-            background: rgba(0, 0, 0, 0.9);
-            border: 1px solid #00ff41;
+            background: rgba(15, 15, 45, 0.9);
+            border: 1px solid #8b5cf6;
             padding: 30px;
             border-radius: 10px;
             text-align: center;
@@ -220,7 +227,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+            background: linear-gradient(45deg, transparent, rgba(139, 92, 246, 0.1), transparent);
             transform: translateX(-100%);
             transition: transform 0.6s;
         }
@@ -231,27 +238,28 @@
         
         .feature-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 255, 65, 0.3);
-            border-color: #0080ff;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+            border-color: #06b6d4;
         }
         
         .feature-card h3 {
-            color: #00ff41;
+            color: #8b5cf6;
             margin-bottom: 15px;
             font-size: 1.3rem;
-            text-shadow: 0 0 5px #00ff41;
+            text-shadow: 0 0 5px rgba(139, 92, 246, 0.5);
         }
         
         .feature-card p {
             opacity: 0.8;
             line-height: 1.6;
+            color: #c4b5fd;
         }
         
         /* 按钮样式 */
         .btn {
             display: inline-block;
-            background: linear-gradient(45deg, #00ff41, #0080ff);
-            color: #000;
+            background: linear-gradient(45deg, #8b5cf6, #06b6d4);
+            color: #fff;
             padding: 15px 30px;
             text-decoration: none;
             border-radius: 25px;
@@ -262,7 +270,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
         }
         
         .btn::before {
@@ -282,7 +290,7 @@
         
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 25px rgba(0, 255, 65, 0.5);
+            box-shadow: 0 5px 25px rgba(139, 92, 246, 0.5);
         }
         
         /* 列表样式 */
@@ -293,15 +301,16 @@
         
         ul li {
             padding: 10px 0;
-            border-left: 3px solid #00ff41;
+            border-left: 3px solid #8b5cf6;
             padding-left: 20px;
             margin: 10px 0;
             position: relative;
+            color: #c4b5fd;
         }
         
         ul li::before {
             content: '▶';
-            color: #00ff41;
+            color: #8b5cf6;
             font-weight: bold;
             position: absolute;
             left: 5px;
@@ -309,8 +318,8 @@
         
         /* 信息框 */
         .info-box {
-            background: rgba(0, 255, 65, 0.1);
-            border: 1px solid #00ff41;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid #8b5cf6;
             padding: 20px;
             border-radius: 8px;
             margin: 20px 0;
@@ -318,9 +327,13 @@
         }
         
         .info-box h3 {
-            color: #00ff41;
+            color: #8b5cf6;
             margin-bottom: 10px;
-            text-shadow: 0 0 5px #00ff41;
+            text-shadow: 0 0 5px rgba(139, 92, 246, 0.5);
+        }
+        
+        .info-box p {
+            color: #c4b5fd;
         }
         
         /* 页脚 */
@@ -328,8 +341,9 @@
             text-align: center;
             padding: 40px 0;
             opacity: 0.6;
-            border-top: 1px solid #00ff41;
+            border-top: 1px solid #8b5cf6;
             margin-top: 60px;
+            color: #c4b5fd;
         }
         
         /* 响应式设计 */
@@ -368,7 +382,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at center, transparent 30%, rgba(0, 255, 65, 0.1) 70%);
+            background: radial-gradient(circle at center, transparent 30%, rgba(139, 92, 246, 0.1) 70%);
             animation: bullet-pulse 4s ease-in-out infinite;
             pointer-events: none;
         }
@@ -383,9 +397,40 @@
                 opacity: 1;
             }
         }
+        
+        /* 星空背景效果 */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+        
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #8b5cf6;
+            border-radius: 50%;
+            animation: twinkle 2s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- 星空背景 -->
+    <div class="stars" id="stars"></div>
+    
     <!-- 代码雨背景 -->
     <div class="matrix-bg" id="matrix"></div>
     
@@ -528,6 +573,19 @@
     </div>
 
     <script>
+        // 创建星空背景
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+        
         // 代码雨效果
         function createMatrix() {
             const matrix = document.getElementById('matrix');
@@ -538,7 +596,7 @@
                 column.className = 'matrix-column';
                 column.style.left = Math.random() * 100 + '%';
                 column.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                column.style.opacity = Math.random();
+                column.style.opacity = Math.random() * 0.6;
                 
                 let text = '';
                 for (let i = 0; i < 20; i++) {
@@ -553,10 +611,11 @@
                 }, 5000);
             }
             
-            setInterval(createColumn, 100);
+            setInterval(createColumn, 150);
         }
         
-        // 启动代码雨
+        // 启动效果
+        createStars();
         createMatrix();
         
         // 鼠标跟踪光效
@@ -567,11 +626,11 @@
             cursor.style.top = e.clientY + 'px';
             cursor.style.width = '10px';
             cursor.style.height = '10px';
-            cursor.style.background = '#00ff41';
+            cursor.style.background = 'radial-gradient(circle, #8b5cf6, #06b6d4)';
             cursor.style.borderRadius = '50%';
             cursor.style.pointerEvents = 'none';
             cursor.style.zIndex = '9999';
-            cursor.style.boxShadow = '0 0 10px #00ff41';
+            cursor.style.boxShadow = '0 0 10px #8b5cf6';
             cursor.style.animation = 'fade-out 1s ease-out forwards';
             
             document.body.appendChild(cursor);
