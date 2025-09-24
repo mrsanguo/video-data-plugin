@@ -1,0 +1,68 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#5b73ff;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#9c27ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff1744;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#9c27ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff1744;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- 星空背景 -->
+  <rect width="200" height="200" fill="url(#starField)"/>
+  
+  <!-- 无穷符号主体 -->
+  <g transform="translate(100,80)">
+    <!-- 左环 -->
+    <ellipse cx="-25" cy="0" rx="20" ry="35" 
+             fill="none" 
+             stroke="url(#logoGradient)" 
+             stroke-width="8" 
+             filter="url(#glow)"
+             transform="rotate(-15)"/>
+    
+    <!-- 右环 -->
+    <ellipse cx="25" cy="0" rx="15" ry="25" 
+             fill="none" 
+             stroke="url(#logoGradient)" 
+             stroke-width="6" 
+             filter="url(#glow)"
+             transform="rotate(15)"/>
+    
+    <!-- 连接部分 -->
+    <path d="M -5,-10 Q 0,0 5,10 Q 0,0 -5,-10" 
+          fill="none" 
+          stroke="url(#logoGradient)" 
+          stroke-width="4" 
+          filter="url(#glow)"/>
+  </g>
+  
+  <!-- AURORA UNION 文字 -->
+  <text x="100" y="140" 
+        font-family="Arial, sans-serif" 
+        font-size="14" 
+        font-weight="bold" 
+        text-anchor="middle" 
+        fill="url(#textGradient)"
+        filter="url(#glow)">AURORA UNION</text>
+  
+  <!-- 极光联合AI赋能 文字 -->
+  <text x="100" y="160" 
+        font-family="Arial, sans-serif" 
+        font-size="12" 
+        text-anchor="middle" 
+        fill="url(#textGradient)"
+        opacity="0.9">极光联合AI赋能</text>
+</svg>
