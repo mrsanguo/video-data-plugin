@@ -86,6 +86,14 @@
             box-shadow: 0 0 30px #8b5cf6, 0 0 60px #06b6d4, 0 0 90px #3b82f6;
             animation: pulse 2s ease-in-out infinite alternate;
             position: relative;
+            overflow: hidden;
+        }
+        
+        .logo img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            border-radius: 50%;
         }
         
         .logo::before {
@@ -437,7 +445,9 @@
     <div class="container">
         <header class="header bullet-time">
             <div class="logo-container">
-                <div class="logo">极光</div>
+                <div class="logo">
+                    <img src="logo.png" alt="极光联合LOGO" />
+                </div>
             </div>
             <h1>极光联合视频分析助手</h1>
             <p>专业的抖音视频数据分析工具，为内容创作者提供精准的数据洞察</p>
