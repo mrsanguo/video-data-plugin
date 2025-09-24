@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>极光联合视频分析助手 - 抖音视频数据分析工具</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
@@ -12,102 +14,386 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            font-family: 'Orbitron', monospace;
+            background: #000;
+            color: #00ff41;
+            overflow-x: hidden;
+            position: relative;
         }
         
+        /* 代码雨背景 */
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .matrix-column {
+            position: absolute;
+            top: -100%;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #00ff41;
+            animation: matrix-fall linear infinite;
+            text-shadow: 0 0 5px #00ff41;
+        }
+        
+        @keyframes matrix-fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+        
+        /* 主容器 */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
+            z-index: 1;
         }
         
+        /* 头部区域 */
         .header {
             text-align: center;
-            color: white;
-            padding: 60px 0;
+            padding: 80px 0;
+            position: relative;
+        }
+        
+        .logo-container {
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+            background: linear-gradient(45deg, #00ff41, #0080ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: 900;
+            color: #000;
+            box-shadow: 0 0 30px #00ff41, 0 0 60px #00ff41, 0 0 90px #00ff41;
+            animation: pulse 2s ease-in-out infinite alternate;
+            position: relative;
+        }
+        
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid #00ff41;
+            border-radius: 50%;
+            animation: rotate 4s linear infinite;
+        }
+        
+        @keyframes pulse {
+            from {
+                box-shadow: 0 0 30px #00ff41, 0 0 60px #00ff41, 0 0 90px #00ff41;
+            }
+            to {
+                box-shadow: 0 0 40px #00ff41, 0 0 80px #00ff41, 0 0 120px #00ff41;
+            }
+        }
+        
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
         }
         
         .header h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
+            font-weight: 900;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41, 0 0 30px #00ff41;
+            animation: glow 2s ease-in-out infinite alternate;
+            letter-spacing: 3px;
         }
         
         .header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
+            font-size: 1.3rem;
+            opacity: 0.8;
+            text-shadow: 0 0 5px #00ff41;
+            animation: fadeInUp 1s ease-out;
         }
         
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41, 0 0 30px #00ff41;
+            }
+            to {
+                text-shadow: 0 0 15px #00ff41, 0 0 25px #00ff41, 0 0 35px #00ff41;
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 0.8;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 内容区域 */
         .content {
-            background: white;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00ff41;
             border-radius: 15px;
             padding: 40px;
             margin: 40px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
         }
         
+        .content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+            animation: scan 3s linear infinite;
+        }
+        
+        @keyframes scan {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+        
+        .content h2 {
+            color: #00ff41;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #00ff41;
+            border-bottom: 2px solid #00ff41;
+            padding-bottom: 10px;
+        }
+        
+        /* 功能卡片网格 */
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             margin: 40px 0;
         }
         
         .feature-card {
-            background: #f8f9fa;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid #00ff41;
             padding: 30px;
             border-radius: 10px;
             text-align: center;
-            border-left: 4px solid #667eea;
+            position: relative;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+        
+        .feature-card:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 255, 65, 0.3);
+            border-color: #0080ff;
         }
         
         .feature-card h3 {
-            color: #667eea;
+            color: #00ff41;
             margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-shadow: 0 0 5px #00ff41;
         }
         
+        .feature-card p {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        /* 按钮样式 */
         .btn {
             display: inline-block;
-            background: #667eea;
-            color: white;
-            padding: 12px 30px;
+            background: linear-gradient(45deg, #00ff41, #0080ff);
+            color: #000;
+            padding: 15px 30px;
             text-decoration: none;
             border-radius: 25px;
             margin: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
         }
         
         .btn:hover {
-            background: #5a6fd8;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 25px rgba(0, 255, 65, 0.5);
         }
         
+        /* 列表样式 */
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        ul li {
+            padding: 10px 0;
+            border-left: 3px solid #00ff41;
+            padding-left: 20px;
+            margin: 10px 0;
+            position: relative;
+        }
+        
+        ul li::before {
+            content: '▶';
+            color: #00ff41;
+            font-weight: bold;
+            position: absolute;
+            left: 5px;
+        }
+        
+        /* 信息框 */
+        .info-box {
+            background: rgba(0, 255, 65, 0.1);
+            border: 1px solid #00ff41;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .info-box h3 {
+            color: #00ff41;
+            margin-bottom: 10px;
+            text-shadow: 0 0 5px #00ff41;
+        }
+        
+        /* 页脚 */
         .footer {
             text-align: center;
-            color: white;
             padding: 40px 0;
-            opacity: 0.8;
+            opacity: 0.6;
+            border-top: 1px solid #00ff41;
+            margin-top: 60px;
         }
         
+        /* 响应式设计 */
         @media (max-width: 768px) {
             .header h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
             .content {
                 padding: 20px;
                 margin: 20px 0;
             }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .logo {
+                width: 80px;
+                height: 80px;
+                font-size: 32px;
+            }
+        }
+        
+        /* 子弹时间效果 */
+        .bullet-time {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .bullet-time::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 30%, rgba(0, 255, 65, 0.1) 70%);
+            animation: bullet-pulse 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes bullet-pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- 代码雨背景 -->
+    <div class="matrix-bg" id="matrix"></div>
+    
     <div class="container">
-        <header class="header">
+        <header class="header bullet-time">
+            <div class="logo-container">
+                <div class="logo">极光</div>
+            </div>
             <h1>极光联合视频分析助手</h1>
             <p>专业的抖音视频数据分析工具，为内容创作者提供精准的数据洞察</p>
         </header>
@@ -142,7 +428,7 @@
             
             <section>
                 <h2>使用场景</h2>
-                <ul style="margin: 20px 0; padding-left: 20px;">
+                <ul>
                     <li>内容创作者分析视频表现，优化内容策略</li>
                     <li>市场研究人员进行行业分析和竞品研究</li>
                     <li>数据分析师进行用户行为研究和趋势分析</li>
@@ -154,7 +440,7 @@
 
             <section>
                 <h2>使用指南</h2>
-                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <div class="info-box">
                     <h3>第一步：安装插件</h3>
                     <p>在Coze IDE中搜索"视频统计分析助手"插件并安装</p>
                     
@@ -179,7 +465,7 @@
             
             <section>
                 <h2>技术特点</h2>
-                <ul style="margin: 20px 0; padding-left: 20px;">
+                <ul>
                     <li>基于Python开发，稳定可靠</li>
                     <li>支持Coze IDE插件集成</li>
                     <li>遵循RESTful API设计规范</li>
@@ -192,7 +478,7 @@
 
             <section id="privacy">
                 <h2>隐私政策</h2>
-                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <div class="info-box">
                     <h3>数据收集</h3>
                     <p>本插件仅通过官方API获取公开的视频统计数据，不收集用户个人信息。</p>
                     
@@ -209,7 +495,7 @@
 
             <section id="terms">
                 <h2>服务条款</h2>
-                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <div class="info-box">
                     <h3>使用规范</h3>
                     <p>用户应当合法合规使用本工具，不得用于违法违规活动。</p>
                     
@@ -226,7 +512,7 @@
 
             <section>
                 <h2>联系我们</h2>
-                <div style="text-align: center; background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <div class="info-box" style="text-align: center;">
                     <p>如有问题或建议，请通过以下方式联系我们：</p>
                     <p>📧 邮箱：support@video-analytics.com</p>
                     <p>🐙 GitHub：https://github.com/mrsanguo/video-data-plugin</p>
@@ -236,9 +522,80 @@
         </main>
         
         <footer class="footer">
-            <p>&copy; 2024 视频统计分析助手. 本工具仅用于合法的数据分析和研究目的.</p>
+            <p>&copy; 2024 极光联合视频分析助手. 本工具仅用于合法的数据分析和研究目的.</p>
             <p>严格遵守抖音平台使用条款和数据保护规定</p>
         </footer>
     </div>
+
+    <script>
+        // 代码雨效果
+        function createMatrix() {
+            const matrix = document.getElementById('matrix');
+            const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+            
+            function createColumn() {
+                const column = document.createElement('div');
+                column.className = 'matrix-column';
+                column.style.left = Math.random() * 100 + '%';
+                column.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                column.style.opacity = Math.random();
+                
+                let text = '';
+                for (let i = 0; i < 20; i++) {
+                    text += chars[Math.floor(Math.random() * chars.length)] + '<br>';
+                }
+                column.innerHTML = text;
+                
+                matrix.appendChild(column);
+                
+                setTimeout(() => {
+                    matrix.removeChild(column);
+                }, 5000);
+            }
+            
+            setInterval(createColumn, 100);
+        }
+        
+        // 启动代码雨
+        createMatrix();
+        
+        // 鼠标跟踪光效
+        document.addEventListener('mousemove', (e) => {
+            const cursor = document.createElement('div');
+            cursor.style.position = 'fixed';
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursor.style.width = '10px';
+            cursor.style.height = '10px';
+            cursor.style.background = '#00ff41';
+            cursor.style.borderRadius = '50%';
+            cursor.style.pointerEvents = 'none';
+            cursor.style.zIndex = '9999';
+            cursor.style.boxShadow = '0 0 10px #00ff41';
+            cursor.style.animation = 'fade-out 1s ease-out forwards';
+            
+            document.body.appendChild(cursor);
+            
+            setTimeout(() => {
+                document.body.removeChild(cursor);
+            }, 1000);
+        });
+        
+        // 添加淡出动画
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fade-out {
+                from {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+                to {
+                    opacity: 0;
+                    transform: scale(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
